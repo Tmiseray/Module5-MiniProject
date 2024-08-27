@@ -7,7 +7,7 @@ class Book:
         self.author = author
         self.genre = genre
         self.publication_date = publication_date
-        self.availability = "Available"
+        self.availability = True
     
     def get_title(self):
         return self.title
@@ -24,12 +24,12 @@ class Book:
     def get_availability(self):
         return self.availability
     
-    def mark_as_borrowed(self, is_borrowed):
-        if is_borrowed:
-            self.availability = "Borrowed"
+    # def mark_as_borrowed(self, is_borrowed):
+    #     if is_borrowed:
+    #         self.availability = "Borrowed"
             
-        else:
-            self.availability = "Available"        
+    #     else:
+    #         self.availability = "Available"        
 
-    def format_book(self):
-        return f"\nTitle: {self.title}\n- Author: {self.author}\n- Genre: {self.genre}\n- Publication Date: {self.publication_date}\n- Availability: {self.availability}"
+    # def format_book(self):
+    #     return f"\nTitle: {self.title}\n- Author: {self.author}\n- Genre: {self.genre}\n- Publication Date: {self.publication_date}\n- Availability: {self.availability}"

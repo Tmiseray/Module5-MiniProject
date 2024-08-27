@@ -20,14 +20,15 @@ class LibraryDatabase:
                 database = self.db_name,
                 user = self.user,
                 password = self.password,
-                host = self.host
+                host = self.host,
+                consume_results = True
             )
 
             # Check for successful connection
             if self.conn.is_connected():
-                print(f"Successfully connected to MySQL Database: {self.db_name}!")
+                print(f"\nSuccessfully connected to MySQL Database: {self.db_name}!")
             else:
-                print(f"Failed to connect to the database: {self.db_name}")
+                print(f"\nFailed to connect to the database: {self.db_name}")
         
         except Error as e:
             # Connection error handling
@@ -45,7 +46,7 @@ class LibraryDatabase:
             print("Not connected to any database.")
             return None
         
-        cursor = self.conn.cursor(dictionary=True)
+        cursor = self.conn.cursor(dictionary=True, buffered=True)
         try:
             cursor.execute(query, params)
             self.conn.commit()

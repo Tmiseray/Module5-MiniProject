@@ -55,7 +55,7 @@ class Library:
         self.db.execute_query(borrowed_books_query, (user_id, book_id, self.datetime))
         return f"\n* Book '{title}' checked out to {user_name} *"
     
-    def remove_returned_book(self, library_id, title):
+    def update_returned_book(self, library_id, title):
         # user = self.users[library_id]
         # book = self.books[title]
         # user.return_borrowed_book(book.title)
@@ -154,6 +154,14 @@ class Library:
         else:
             raise LookupError(f"Cannot find book with Title: {book}")
         
+    def query_book_and_availability(self, book):
+        query = "SELECT * FROM Books WHERE title = %s AND availability = %s"
+        row = self.db.fetch_one(query, (book, True))
+        if row:
+            return True
+        else:
+            return False
+
     # def display_all_books(self):
     #     for book in self.books.values():
     #         print(book.format_book())

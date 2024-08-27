@@ -26,8 +26,8 @@ create_borrowed_books_table = """CREATE TABLE BorrowedBooks (
 id INT AUTO_INCREMENT PRIMARY KEY,
 user_id INT,
 book_id INT,
-borrow_date DATE NOT NULL,
-return_date DATE,
+borrow_date DATETIME NOT NULL,
+return_date DATETIME,
 FOREIGN KEY (user_id) REFERENCES Users(id),
 FOREIGN KEY (book_id) REFERENCES Books(id)
 )"""

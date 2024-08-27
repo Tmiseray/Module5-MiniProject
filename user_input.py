@@ -48,6 +48,7 @@ class UserInput:
         self.library = library
 
 
+    """TODO Fix Library ID generator to check DB for existing IDs and THEN increment by 1"""
      # User Operations Inputs
     def add_user(self):
         library_id = self.unique_id_generator.generate_id()
@@ -64,11 +65,11 @@ class UserInput:
                 raise ValueError("\n* Invalid Library ID. Please try again. *")
             else:
                 print(f"\n* Retrieving Details for Library ID: {formatted_id}... *")
-                results = self.library._find_user_by_library_id(formatted_id)
+                results = self.library.find_user_by_library_id(formatted_id)
                 return results
         else:
             print(f"\n* Retrieving Details for Library ID: {library_id}... *")
-            results = self.library._find_user_by_library_id(library_id)
+            results = self.library.find_user_by_library_id(library_id)
             return results
         
 
@@ -88,22 +89,39 @@ class UserInput:
             if author not in self.library.authors:
                 return self.add_author(author)
         
+    # def borrow_book(self):
+    #     book = input("\nEnter title of book to borrow: ")
+    #     if book in self.library.books and self.library.books[book].get_availability() == "Available":
+    #             library_id = input("Enter your Library ID: ")
+    #             if not self.validate_inputs.check_library_id(library_id):
+    #                 formatted_id = self.validate_inputs.format_library_id(library_id)
+    #                 if not self.validate_inputs.check_library_id(formatted_id):
+    #                     raise ValueError("\n* Invalid Library ID. Please try again. *")
+    #                 else:
+    #                     results = self.library.add_borrowed_book(formatted_id, book)
+    #                     return results
+    #             else:
+    #                 results = self.library.add_borrowed_book(library_id, book)
+    #                 return results
+    #     raise LookupError("\n* Book not available or not found. *")
+        
     def borrow_book(self):
         book = input("\nEnter title of book to borrow: ")
-        if book in self.library.books and self.library.books[book].get_availability() == "Available":
-                library_id = input("Enter your Library ID: ")
-                if not self.validate_inputs.check_library_id(library_id):
-                    formatted_id = self.validate_inputs.format_library_id(library_id)
-                    if not self.validate_inputs.check_library_id(formatted_id):
-                        raise ValueError("\n* Invalid Library ID. Please try again. *")
-                    else:
-                        results = self.library.add_borrowed_book(formatted_id, book)
-                        return results
+        if self.library.query_book_availability(book):
+            library_id = input("Enter your Library ID: ")
+            if not self.validate_inputs.check_library_id(library_id):
+                formatted_id = self.validate_inputs.format_library_id(library_id)
+                if not self.validate_inputs.check_library_id(formatted_id):
+                    raise ValueError("\n* Invalid Library ID. Please try again. *")
                 else:
-                    results = self.library.add_borrowed_book(library_id, book)
+                    results = self.library.add_borrowed_book(formatted_id, book)
                     return results
+            else:
+                results = self.library.add_borrowed_book(library_id, book)
+                return results
         raise LookupError("\n* Book not available or not found. *")
-        
+
+
     def return_book(self):
         book = input("\nEnter title of book to return: ")
         library_id = input("Enter your Library ID: ")
@@ -112,10 +130,10 @@ class UserInput:
             if not self.validate_inputs.check_library_id(formatted_id):
                 raise ValueError("\n* Invalid Library ID. Please try again. *")
             else:     
-                results = self.library.remove_returned_book(formatted_id, book)
+                results = self.library.update_returned_book(formatted_id, book)
                 return results
         else:
-            results = self.library.remove_returned_book(library_id, book)
+            results = self.library.update_returned_book(library_id, book)
             return results
 
     def search_for_book(self):
@@ -129,7 +147,7 @@ class UserInput:
     def add_author(self, author_name=None):
         if author_name is None:
             author_name = input("\nEnter author's name: ")
-        biography = input("Enter author's biography: ")
+        biography = input("\nEnter author's biography: ")
         author = Author(author_name, biography)
         self.library.add_author_to_library(author)
         print(f"\n** New Author Added: **\nAuthor: {author.name}\n- Biography: {author.biography}")

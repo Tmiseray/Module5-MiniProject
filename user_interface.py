@@ -38,7 +38,7 @@ class UserInterface:
             except Exception as e:
                 print(f"\n* An unexpected error occurred: *\n* {e} *")
             finally:
-                self.library.close()
+                self.library.db.disconnect()
                 return False
 
 

@@ -32,19 +32,19 @@ class User:
     def get_borrowed_books(self):
         return self._borrowed_books
     
-    def assign_borrowed_book(self, book):
-        self._borrowed_books.append(book)
+    # def assign_borrowed_book(self, book):
+    #     self._borrowed_books.append(book)
 
-    def return_borrowed_book(self, book):
-        for borrowed_book in self._borrowed_books:
-            if book == borrowed_book:
-                self._borrowed_books.remove(book)
-                return
+    # def return_borrowed_book(self, book):
+    #     for borrowed_book in self._borrowed_books:
+    #         if book == borrowed_book:
+    #             self._borrowed_books.remove(book)
+    #             return
 
-    def format_user(self):
-        print(f"\nLibrary ID: {self._library_id}\n- Name: {self._name}\n- Borrowed Books: ")
-        if self._borrowed_books is None:
-            print("\t~ No borrowed books.")
-        else:
-            for book in self._borrowed_books:
-                print(f"\t~ {book}")
+    # def format_user(self):
+    #     print(f"\nLibrary ID: {self._library_id}\n- Name: {self._name}\n- Borrowed Books: ")
+    #     if self._borrowed_books is None:
+    #         print("\t~ No borrowed books.")
+    #     else:
+    #         for book in self._borrowed_books:
+    #             print(f"\t~ {book}")
