@@ -26,52 +26,65 @@ class LibraryDatabase:
 
             # Check for successful connection
             if self.conn.is_connected():
-                print(f"\nSuccessfully connected to MySQL Database: {self.db_name}!")
+                print(f"\n.~* Successfully connected to MySQL Database: {self.db_name}! *~.")
             else:
-                print(f"\nFailed to connect to the database: {self.db_name}")
+                print(f"\n* Failed to connect to the database: {self.db_name} *")
         
         except Error as e:
             # Connection error handling
-            print(f"Error while connecting to MySQL: {e}")
+            print(f"\n* Error occurred while connecting to MySQL: {e} *")
             return None
         
     def disconnect(self):
         # Disconnect from MySQL Database
         if self.conn and self.conn.is_connected():
             self.conn.close()
-            print(f"Disconnected from Database: {self.db_name}")
+            print(f"\n.~* Disconnected from Database: {self.db_name} *~.")
 
     def execute_query(self, query, params=None):
         if not self.conn or not self.conn.is_connected():
-            print("Not connected to any database.")
+            print("\n* Not connected to any database. *")
             return None
         
         cursor = self.conn.cursor(dictionary=True, buffered=True)
         try:
             cursor.execute(query, params)
             self.conn.commit()
-            print("Query executed successfully!")
             return cursor
         except Error as e:
-            print(f"Error: '{e}' occurred")
+            print(f"\n* Error executing query: '{e}' *")
             return None
         finally:
             cursor.close()
 
     def fetch_all(self, query, params=None):
         # Fetch all results for a given query
-        cursor = self.execute_query(query, params)
-        if cursor:
-            results = cursor.fetchall()
-            cursor.close()
-            return results
-        return []
-    
+        cursor = None
+        try:
+            cursor = self.execute_query(query, params)
+            if cursor:
+                return cursor.fetchall()
+            else:
+                return []
+        except Error as e:
+            print(f"\n* Error fetching data: '{e}' *")
+            return []
+        finally:
+            if cursor:
+                cursor.close()
+                
     def fetch_one(self, query, params=None):
-        # Fetch single result for a query
-        cursor = self.execute_query(query, params)
-        if cursor:
-            result = cursor.fetchone()
-            cursor.close()
-            return result
-        return None
+        # Fetch single result for a query or None if no rows
+        cursor = None
+        try:
+            cursor = self.execute_query(query, params)
+            if cursor:
+                return cursor.fetchone()
+            else:
+                return None
+        except Error as e:
+            print(f"\n* Error fetching data: {e} *")
+            return None
+        finally:
+            if cursor:
+                cursor.close()

@@ -21,7 +21,7 @@ class UserInterface:
             choice = input("Enter your choice (1/2/3/4): ")
             try:
                 if choice == '4':
-                    print("\n.~* Thank you for using Library Management System! *~.\n* Exiting program... *\n")
+                    print("\n.~* Thank you for using Library Management System! *~.\n\n\t* Exiting program... *\n")
                     break
                 elif choice == '1':
                     self.user_operations()
@@ -30,7 +30,7 @@ class UserInterface:
                 elif choice == '3':
                     self.author_operations()
                 else:
-                    raise ValueError("\n* Invalid choice. Please enter the digit that corresponds with your selection. *")
+                    print("\n* Invalid choice. Please enter the digit that corresponds with your selection. *")
             except ValueError as v:
                 print(v)
             except TypeError:
@@ -65,11 +65,13 @@ class UserInterface:
                     print("\n** List of All Users **")
                     self.library.display_all_users()
                 else:
-                    raise ValueError("\n* Invalid choice. Please enter the digit that corresponds with your selection. *")
+                    print("\n* Invalid choice. Please enter the digit that corresponds with your selection. *")
             except ValueError as v:
                 print(v)
             except LookupError as l:
                 print(l)
+            except RuntimeError as r:
+                print(r)
             except TypeError:
                 print("\n* An unexpected type error occurred. Please ensure you enter the digit that corresponds with your selection. *")
             except Exception as e:
@@ -106,11 +108,13 @@ class UserInterface:
                     print("\n** Full Library Collection: **")
                     self.library.display_all_books()
                 else:
-                    raise ValueError("\n* Invalid choice. Please enter the digit that corresponds with your selection. *")
+                    print("\n* Invalid choice. Please enter the digit that corresponds with your selection. *")
             except ValueError as v:
                 print(v)
             except LookupError as l:
                 print(l)
+            except RuntimeError as r:
+                print(r)
             except TypeError:
                 print("\n* An unexpected type error occurred. Please ensure you enter the digit that corresponds with your selection. *")
             except Exception as e:
@@ -139,11 +143,13 @@ class UserInterface:
                     print("\n** All Authors in Library **")
                     self.library.display_all_authors()
                 else:
-                    raise ValueError("\n* Invalid choice. Please enter the digit that corresponds with your selection. *")
+                    print("\n* Invalid choice. Please enter the digit that corresponds with your selection. *")
             except ValueError as v:
                 print(v)
             except LookupError as l:
                 print(l)
+            except RuntimeError as r:
+                print(r)
             except TypeError:
                 print("\n* An unexpected type error occurred. Please ensure you enter the digit that corresponds with your selection. *")
             except Exception as e:
