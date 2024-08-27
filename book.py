@@ -27,6 +27,7 @@ class Book:
     def mark_as_borrowed(self, is_borrowed):
         if is_borrowed:
             self.availability = "Borrowed"
+            
         else:
             self.availability = "Available"        
 
