@@ -11,6 +11,7 @@ This project is an advanced Library Management System that has a MySQL database 
         * [MySQL Community Server](https://dev.mysql.com/downloads/mysql/)
         * [MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
         * MySQL Connector for Python(`pip install mysql-connector-python`)
+* Make sure to update [Module for MySQL Database](library_database.py) with your own database login details
 
 ## Installation:
 *** **GitHub Repository** ***

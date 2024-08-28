@@ -8,7 +8,7 @@ class LibraryDatabase:
         # Database connection parameters
         self.db_name = "library_db"
         self.user = "root"
-        self.password = "D!Vincenz022"
+        self.password = "your_password_here"
         self.host = "localhost"
         self.conn = None
 
