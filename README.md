@@ -221,7 +221,7 @@ This project is an advanced Library Management System that has a MySQL database 
         * `self.validate_inputs.format_library_id(library_id)`
     - On failure, `ValueError` is raised:
         > \* Invalid Library ID. Please try again. \*
-    - Otherwise, it instantiates a method from the `Library` class to add the book to the BorrowedBooks table within the database
+    - Otherwise, it instantiates a method from the `Library` class to add the book to the **BorrowedBooks** table within the database
 5. *Return a Book:*
     - `return_book(self)`
     - Prompts the user for title of the book to return and their Library ID, which is then validated and formatted/revalidated if needed
@@ -229,7 +229,7 @@ This project is an advanced Library Management System that has a MySQL database 
         * `self.validate_inputs.format_library_id(library_id)`
     - On failure, `ValueError` is raised:
         > \* Invalid Library ID. Please try again. \*
-    - Otherwise, it instantiates a method from the `Library` class to update the BorrowedBooks table with a return date, as well as updates the availability and returns the results
+    - Otherwise, it instantiates a method from the `Library` class to update the **BorrowedBooks** table with a return date, as well as updates the availability and returns the results
 6. *Search for a Book:*
     - `search_for_book(self)`
     - Prompts the user for title of the book to search for and advises the user of the action:
@@ -274,7 +274,7 @@ This project is an advanced Library Management System that has a MySQL database 
 4. ***Add Book to Library***
     - `add_book_to_library(self, book)`
     - Takes the class object `book` and checks the database for an existing book
-    - If it does, raises ValueError with message
+    - If it does, raises `ValueError` with message
     - If not, executes a query to insert the details into the database and prints a confirmation message with the book's details
 5. ***Find Book by Title***
     - `find_book_by_title(self, book)`
@@ -287,32 +287,32 @@ This project is an advanced Library Management System that has a MySQL database 
 7. ***Display All Books***
     - `display_all_books(self)`
     - Fetches all details for all books' details and prints each one in a user-friendly format
-    - If no data is found, raises LookupError and provides a specific error message
-8. ***Add Borowed Book***
+    - If no data is found, raises `LookupError` and provides a specific error message
+8. ***Add Borrowed Book***
     - `add_borrowed_book(self, library_id, title)`
     - Creates a database transaction for multiple queries to process completely
     - Checks for the book and updates the availability
     - Fetches the User's ID and Name based on the Library ID
-        * Raises LookupError with specific error message if no user found
+        * Raises `LookupError` with specific error message if no user found
     - Fetches Book ID based on the title
-        * Raises LookupError with specific error message if no book found
-    - Inserts the record into the BorrowedBooks table including the date/time the book was borrowed
+        * Raises `LookupError` with specific error message if no book found
+    - Inserts the record into the **BorrowedBooks** table including the date/time the book was borrowed
     - Returns a confirmation message
-    - If an error takes place during execution, calls for a `rollback()` to ensure the data is not partial changed and raises RuntimeError with a specific message
+    - If an error takes place during execution, calls for a `rollback()` to ensure the data is not partial changed and raises `RuntimeError` with a specific message
 9. ***Update Returned Book***
     - `update_returned_book(self, library_id, title)`
     - Creates a database transaction for multiple queries to process completely
     - Checks for the book and updates the availability
     - Fetches the User's ID and Name based on the Library ID
-        * Raises LookupError with specific error message if no user found
+        * Raises `LookupError` with specific error message if no user found
     - Fetches Book ID based on the title
-        * Raises LookupError with specific error message if no book found
-    - Updates the record in the BorrowedBooks table including the date/time the book was returned
+        * Raises `LookupError` with specific error message if no book found
+    - Updates the record in the **BorrowedBooks** table including the date/time the book was returned
     - Returns a confirmation message
-    - If an error takes place during execution, calls for a `rollback()` to ensure the data is not partial changed and raises RuntimeError with a specific message
+    - If an error takes place during execution, calls for a `rollback()` to ensure the data is not partial changed and raises `RuntimeError` with a specific message
 10. ***Add Author to Library***
     - `add_author_to_library(self, author)`
-    - Takes the class object `author` and inserts it into the Authors table within the database
+    - Takes the class object `author` and inserts it into the **Authors** table within the database
 11. ***Author Query***
     - `author_query(self, author_name)`
     - Checks the database to see if the author exists and if so, returns the author's id
@@ -325,7 +325,7 @@ This project is an advanced Library Management System that has a MySQL database 
 13. ***Display All Authors***
     - `display_all_authors(self)`
     - Fetches all author's details and prints each one in a user-friendly format
-    - If no authors found, raises LookupError with specific message
+    - If no authors found, raises `LookupError` with specific message
 
 ### User & UniqueIdGenerator Classes
 * [Module for User & UniqueIdGenerator Classes and Methods](user.py)
