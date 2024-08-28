@@ -2,7 +2,7 @@
 # Uses methods to handle all user interface menus
 # Includes specific error raising and exception handling
 
-from library import Library, LibraryDatabase
+from library import Library
 from user_input import UserInput
 
 class UserInterface:
