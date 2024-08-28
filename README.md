@@ -341,7 +341,7 @@ This project is an advanced Library Management System that has a MySQL database 
         * These are both used within the second method
 * *Library ID Generator:*
     - `generate_id(self)`
-    - Fetches a query from the database for the MAX(library_id) from Users
+    - Fetches a query from the database for the MAX(library_id) from **Users** table
     - Takes the current_max_number and increments by 1, then concatenates the prefix with the `new_id_number`
         * `{self.prefix}{new_id_number}`
 #### *User:*
