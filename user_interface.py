@@ -2,7 +2,7 @@
 # Uses methods to handle all user interface menus
 # Includes specific error raising and exception handling
 
-from library import Library
+from library import Library, LibraryDatabase
 from user_input import UserInput
 
 class UserInterface:
@@ -21,7 +21,8 @@ class UserInterface:
             choice = input("Enter your choice (1/2/3/4): ")
             try:
                 if choice == '4':
-                    print("\n.~* Thank you for using Library Management System! *~.\n\n\t* Exiting program... *\n")
+                    print("\n.~* Thank you for using Library Management System! *~.\n\n\t* Exiting program... *")
+                    self.library.db.disconnect()
                     break
                 elif choice == '1':
                     self.user_operations()
@@ -37,9 +38,6 @@ class UserInterface:
                 print("\n* An unexpected type error occurred. Please ensure you enter the digit that corresponds with your selection. *")
             except Exception as e:
                 print(f"\n* An unexpected error occurred: *\n* {e} *")
-            finally:
-                self.library.db.disconnect()
-                return False
 
 
     def user_operations(self):

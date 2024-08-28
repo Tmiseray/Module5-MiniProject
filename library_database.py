@@ -39,7 +39,7 @@ class LibraryDatabase:
         # Disconnect from MySQL Database
         if self.conn and self.conn.is_connected():
             self.conn.close()
-            print(f"\n.~* Disconnected from Database: {self.db_name} *~.")
+            print(f"\n.~* Disconnected from Database: {self.db_name} *~.\n")
 
     def execute_query(self, query, params=None):
         if not self.conn or not self.conn.is_connected():
