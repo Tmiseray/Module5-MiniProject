@@ -321,7 +321,3 @@ class Library:
                 print(f"\nAuthor ID: {id}\n- Name: {name}")
         else:
             raise LookupError("\n* No authors found in the database. *")
-
-
-    def close(self):
-        self.db.disconnect()

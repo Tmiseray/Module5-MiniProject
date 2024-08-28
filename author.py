@@ -11,6 +11,3 @@ class Author:
     
     def get_biography(self):
         return self.biography
-
-    # def format_author(self):
-    #     return f"\nAuthor: {self.name}\n- Biography: {self.biography}"

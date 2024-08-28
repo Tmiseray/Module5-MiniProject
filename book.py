@@ -23,13 +23,3 @@ class Book:
 
     def get_availability(self):
         return self.availability
-    
-    # def mark_as_borrowed(self, is_borrowed):
-    #     if is_borrowed:
-    #         self.availability = "Borrowed"
-            
-    #     else:
-    #         self.availability = "Available"        
-
-    # def format_book(self):
-    #     return f"\nTitle: {self.title}\n- Author: {self.author}\n- Genre: {self.genre}\n- Publication Date: {self.publication_date}\n- Availability: {self.availability}"

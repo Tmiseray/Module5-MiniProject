@@ -1,4 +1,11 @@
 # MySQL Commands for initial creation of tables
+# Must be executed in order or may cause errors
+
+create_authors_table = """CREATE TABLE Authors (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+biography TEXT
+)"""
 
 create_books_table = """CREATE TABLE Books (
 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -8,12 +15,6 @@ genre VARCHAR(100),
 publication_date YEAR,
 availability BOOLEAN DEFAULT 1,
 FOREIGN KEY (author_id) REFERENCES authors(id)
-)"""
-
-create_authors_table = """CREATE TABLE Authors (
-id INT AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(255) NOT NULL,
-biography TEXT
 )"""
 
 create_users_table = """CREATE TABLE Users (
